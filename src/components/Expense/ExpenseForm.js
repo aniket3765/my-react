@@ -19,9 +19,10 @@ const ExpenseForm = (props) =>{
     const addExpense = (e) =>{
         e.preventDefault();
         const expenseData = {
-            title:title,
-            amount:amount,
-            date:new Date(date)
+            id:Math.random().toString(),
+            Title:title,
+            Amount:amount,
+            Date:new Date(date)
         }
       
         setTitle('');

@@ -1,4 +1,5 @@
 import ExpenseItem from "./components/Expense/ExpenseItem"
+import AddExpense from "./components/Expense/ExpenseForm"
 
 function App() {
 const data = [
@@ -25,7 +26,7 @@ const data = [
 
   
   return ( <div>
-      <h2>Let's get started!</h2>
+      <AddExpense />
     {data.map((d) =>{return  (<ExpenseItem 
   Title={d.Title}
   Amount={d.Amount}

@@ -28,8 +28,3 @@ function ExpenseItem(props) {
 }
 
 export default ExpenseItem;
-
-
-// Food Rs 10</li>
-//                 <li>Petrol Rs 100</li>
-//                 <li>Movies Rs 200</li>

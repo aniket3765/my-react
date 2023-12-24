@@ -24,9 +24,17 @@ const data = [
   Location:"thane"
 },]
 
+const newExpenseHandler = (expense) =>{
+  const expenseData = {
+    ...expense,
+    // id: Math.random().toString()
+  }
+  console.log('Appjs');
+  console.log(expenseData);
+}
   
   return ( <div>
-      <ExpenseForm />
+      <ExpenseForm onSaveNewExpense={newExpenseHandler}/>
     {data.map((d) =>{return  (<ExpenseItem 
   Title={d.Title}
   Amount={d.Amount}

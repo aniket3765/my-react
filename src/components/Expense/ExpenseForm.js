@@ -17,10 +17,19 @@ const ExpenseForm = () =>{
     const onChangeDate = (e) => {
         setDate(e.target.value)
     }
+    const addExpense = (e) =>{
+        e.preventDefault();
+        const expenseData = {
+            title:title,
+            amount:amount,
+            date:new Date(date)
+        }
+        console.log(expenseData)
+    }
 
 return (
     <div className="ExpenseForm">
-        <form>
+        <form onSubmit={addExpense}>
             <div className="new-expense__controls">
             <div className="new-expense__controls">
                 <lable className="new-expense__control label ">Expense Title</lable>
@@ -32,7 +41,7 @@ return (
             </div>
             <div className="new-expense__controls">
                 <lable>Expense Date</lable>
-                <input type='Date' min="2023-01-01" max="2023-12-31"/>
+                <input type='Date' min="01-01-2023" max="31-12-2023"/>
             </div>
             <div className="new-expense__controls">
                 <button type="submit" className='new-expense__actions'>Add Expense</button>

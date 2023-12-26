@@ -1,6 +1,7 @@
 import ExpenseItem from "./components/Expense/ExpenseItem"
 import ExpenseForm from "./components/Expense/ExpenseForm"
 import { useState } from "react"
+import Card from "./components/UI/Card"
 
 const data = [
   {
@@ -46,18 +47,41 @@ const newExpenseHandler = (expense) =>{
   // console.log(expenseData);
 }
 
-console.log(expenses)
+const filteredResult = (e)=> {
+ if(e.target.value == 2023){
+  setExpenses(prevExpenses => {
+    return prevExpenses.filter(d=> d.Date.getFullYear()==2023);
+  })
+ }
+ else if(e.target.value == 2024){
+  setExpenses(prevExpenses => {
+    return prevExpenses.filter(d=> d.Date.getFullYear()==2024);
+  })
+ }
+ else {
+  setExpenses(prevExpenses => {
+    return prevExpenses;
+  })
+ }
+
+}
   
   return ( <div>
       <ExpenseForm onSaveNewExpense={newExpenseHandler}/>
+      <Card><select onChange={filteredResult}>
+        <option value="No filter">No filter</option>
+  <option value={2023}>2023</option>
+  <option value={2024}>2024</option>
+</select >
     {expenses.map((d) =>{return  (<ExpenseItem 
     key={d.id}
   Title={d.Title}
   Amount={d.Amount}
   Date={d.Date}
   Location={d.Location}
-  ></ExpenseItem>)
-   })}
+  ></ExpenseItem>
+  )
+   })}</Card>
     </div>)
 
 }

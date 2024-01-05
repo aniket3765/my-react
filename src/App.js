@@ -1,7 +1,8 @@
 import ExpenseItem from "./components/Expense/ExpenseItem"
 import ExpenseForm from "./components/Expense/ExpenseForm"
 import { useState } from "react"
-import Card from "./components/UI/Card"
+import Card from "./components/UI/Card";
+import ExpenseChart from "./components/Expense/ExpenseChart";
 
 const data = [
   {
@@ -71,6 +72,10 @@ const filteredResult = (e)=> {
  }
 
 }
+
+function chart(){
+  return data;
+}
   
   return ( <div>
       <ExpenseForm onSaveNewExpense={newExpenseHandler}/>
@@ -79,6 +84,7 @@ const filteredResult = (e)=> {
   <option value={2023}>2023</option>
   <option value={2024}>2024</option>
 </select >
+<ExpenseChart expense = {chart}/>
    {
         expenses.length === 0 ? <p>No expenses available</p>: expenses.map((d) =>{return  (<ExpenseItem 
     key={d.id}

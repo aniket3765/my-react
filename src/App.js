@@ -6,7 +6,7 @@ import Card from "./components/UI/Card"
 const data = [
   {
     id:1,
-    Date:new Date(2023, 12, 20),
+    Date:new Date(2023, 2, 20),
     Title:"Food",
     Amount:10,
     Location:"Mumbai"
@@ -14,7 +14,7 @@ const data = [
 
 {
   id:2,
-  Date:new Date(2023, 12, 20),
+  Date:new Date(2023, 0, 10),
   Title:"petrol",
   Amount:"100",
   Location:"pune"
@@ -22,7 +22,7 @@ const data = [
 
 {
   id:3,
-  Date:new Date(2023, 12, 20),
+  Date:new Date(2024, 1, 20),
   Title:"loan",
   Amount:1000,
   Location:"thane"
@@ -33,34 +33,40 @@ const App=()=> {
 
 
 const [expenses, setExpenses] = useState(data);
+let filterData = data;
 
-const newExpenseHandler = (expense) =>{
-  console.log(expense)
+const newExpenseHandler = (expense) =>{ 
   setExpenses(prevExpenses => {
-    return [expense, ...prevExpenses]
+    filterData = [expense, ...prevExpenses];
+    console.log(filterData);
+   return [expense, ...prevExpenses];
   })
-  // const expenseData = {
-  //   ...expense,
-  //    id: Math.random().toString()
-  // } 
-  // console.log('Appjs');
-  // console.log(expenseData);
 }
-
 const filteredResult = (e)=> {
+  setExpenses(prevExpenses => {
+    console.log(data)
+  prevExpenses = filterData;
+    return prevExpenses;
+
+  })
+
  if(e.target.value == 2023){
   setExpenses(prevExpenses => {
-    return prevExpenses.filter(d=> d.Date.getFullYear()==2023);
+    console.log(prevExpenses)
+    return prevExpenses.filter(d => d.Date.getFullYear()==2023);
   })
  }
  else if(e.target.value == 2024){
   setExpenses(prevExpenses => {
-    return prevExpenses.filter(d=> d.Date.getFullYear()==2024);
+    console.log(prevExpenses)
+    return prevExpenses.filter(d => d.Date.getFullYear()==2024);
   })
  }
  else {
   setExpenses(prevExpenses => {
+    console.log(prevExpenses)
     return prevExpenses;
+
   })
  }
 
@@ -68,12 +74,13 @@ const filteredResult = (e)=> {
   
   return ( <div>
       <ExpenseForm onSaveNewExpense={newExpenseHandler}/>
-      <Card><select onChange={filteredResult}>
+      <Card><select onChange  ={filteredResult}>
         <option value="No filter">No filter</option>
   <option value={2023}>2023</option>
   <option value={2024}>2024</option>
 </select >
-    {expenses.map((d) =>{return  (<ExpenseItem 
+   {
+        expenses.length === 0 ? <p>No expenses available</p>: expenses.map((d) =>{return  (<ExpenseItem 
     key={d.id}
   Title={d.Title}
   Amount={d.Amount}

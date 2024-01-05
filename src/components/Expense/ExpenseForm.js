@@ -5,6 +5,7 @@ const ExpenseForm = (props) =>{
     const [title, setTitle] = useState();
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
+    const [form, setForm] = useState(false);
 
 
     const onChangeTitle = (e) => {
@@ -32,29 +33,41 @@ const ExpenseForm = (props) =>{
         props.onSaveNewExpense(expenseData);
     }
 
-return (
+    if(form){
+
+return(
     <div className="ExpenseForm">
-        <form onSubmit={addExpense}>
+      <form onSubmit={addExpense} >
             <div className="new-expense__controls">
             <div className="new-expense__controls">
-                <lable className="new-expense__control label ">Expense Title</lable>
+                <label className="new-expense__control label ">Expense Title</label>
                 <input className='new-expense__control input' type='text' value={title} onChange={onChangeTitle}/>
             </div>
             <div className="new-expense__controls">
-                <lable>Expense Amount</lable>
+                <label>Expense Amount</label>
                 <input type='number' value={amount} onChange={onChangeAmount} min="0.01" step="0.01"/>
             </div>
             <div className="new-expense__controls">
-                <lable>Expense Date</lable>
+                <label>Expense Date</label>
                 <input type='Date' value={date} onChange={onChangeDate} min="01-01-2023" max="31-12-2023"/>
             </div>
             <div className="new-expense__controls">
                 <button type="submit" className='new-expense__actions'>Add Expense</button>
             </div>
+            <button type='button' onClick={()=> {setForm(false)}}>Close Form</button>
             </div>
         </form>
+        
     </div>
-);
+)
+}
+else {
+    return (
+    <div className="ExpenseForm">
+        <button type='button' onClick={()=> setForm(true)}>Add Expense</button>        
+    </div>)
+}
+
 }
 
 export default ExpenseForm;
